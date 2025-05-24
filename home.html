@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Home - Product Showcase</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #dfe9f3 100%);
+    color: #333;
+    overflow-x: hidden;
+  }
+
+  /* Top navigation menu */
+  nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(270deg, #667eea, #764ba2, #667eea);
+    background-size: 600% 600%;
+    animation: gradientShift 16s ease infinite;
+    box-shadow: 0 3px 12px rgba(102, 126, 234, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 50px;
+    transition: padding 0.3s ease;
+  }
+  nav.scrolled {
+    padding: 6px 50px;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.8);
+  }
+
+  @keyframes gradientShift {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
+  }
+
+  nav .logo {
+    font-weight: 700;
+    font-size: 28px;
+    color: white;
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    user-select: none;
+  }
+
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 35px;
+  }
+
+  nav ul li {
+    position: relative;
+  }
+
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px 0;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  nav ul li a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #d1d5ff;
+    transition: width 0.3s ease;
+    border-radius: 2px;
+  }
+  nav ul li a:hover,
+  nav ul li a:focus {
+    color: #d1d5ff;
+  }
+  nav ul li a:hover::after,
+  nav ul li a:focus::after {
+    width: 100%;
+  }
+
+  /* Container for content */
+  .container {
+    max-width: 1240px;
+    margin: 45px auto 70px;
+    padding: 0 25px;
+  }
+
+  /* Page heading */
+  .page-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: 700;
+    font-size: 36px;
+    color: #3a3a3a;
+    text-shadow: 0 1px 4px rgba(102, 126, 234, 0.15);
+  }
+
+  /* Product grid */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 32px;
+  }
+
+  .product-card {
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.12);
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease;
+    opacity: 0;
+    transform: translateY(35px);
+    animation-fill-mode: forwards;
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  }
+
+  /* Stagger fade-in animation */
+  .product-card.fade-in {
+    animation-name: fadeInUp;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .product-card:hover {
+    transform: translateY(-12px) scale(1.04);
+    box-shadow: 0 16px 45px rgba(102, 126, 234, 0.35);
+  }
+
+  .product-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .product-card:hover .product-image {
+    transform: scale(1.1);
+  }
+
+  .product-info {
+    padding: 18px 24px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .product-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c2c2c;
+    margin-bottom: 10px;
+    user-select: none;
+  }
+
+  .product-price {
+    color: #667eea;
+    font-weight: 700;
+    font-size: 17px;
+    user-select: none;
+  }
+
+  .btn-buy {
+    margin-top: 22px;
+    align-self: flex-start;
+    padding: 12px 28px;
+    background-color: #667eea;
+    border: none;
+    border-radius: 18px;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    transition: background-color 0.35s ease, transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+  }
+  .btn-buy:hover {
+    background-color: #5a6edc;
+    animation: pulseBounce 0.7s ease infinite;
+  }
+  .btn-buy:active {
+    animation: none;
+    transform: translateY(2px);
+  }
+
+  @keyframes pulseBounce {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    }
+    50% {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 16px 30px rgba(102, 126, 234, 0.45);
+    }
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    nav {
+      padding: 10px 30px;
+    }
+    nav .logo {
+      font-size: 22px;
+    }
+    nav ul {
+      gap: 20px;
+    }
+    .page-title {
+      font-size: 28px;
+      margin-bottom: 32px;
+    }
+    .btn-buy {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+    .product-info {
+      padding: 15px 18px;
+    }
+    .product-name {
+      font-size: 18px;
+    }
+    .product-price {
+      font-size: 15px;
+    }
+  }
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="logo">bintang 123</div>
+  <ul>
+    <li><a href="#" tabindex="1">Home</a></li>
+    <li><a href="#" tabindex="2">Products</a></li>
+    <li><a href="#" tabindex="3">About</a></li>
+    <li><a href="#" tabindex="4">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h1 class="page-title">Featured Products</h1>
+  <div class="product-grid" id="productGrid">
+    <!-- Products inserted dynamically -->
+  </div>
+</div>
+
+<script>
+  const products = [
+    {
+      id: 1,
+      name: "Wireless Headphones",
+      price: 79.99,
+      image: "https://images.unsplash.com/photo-1512499617640-c2f999d1e1ef?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      id: 2,
+      name: "Smartwatch",
+      price: 149.99,
+      image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      id: 3,
+      name: "Gaming Mouse",
+      price: 39.99,
+      image: "https://images.unsplash.com/photo-1589722021497-e789c583882e?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      id: 4,
+      name: "Bluetooth Speaker",
+      price: 59.99,
+      image: "https://images.unsplash.com/photo-1579705747360-3595d9f5332f?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      id: 5,
+      name: "DSLR Camera",
+      price: 499.99,
+      image: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      id: 6,
+      name: "Fitness Tracker",
+      price: 99.99,
+      image: "https://images.unsplash.com/photo-1519861539654-7f9a60c2249b?auto=format&fit=crop&w=400&q=80"
+    }
+  ];
+
+  const productGrid = document.getElementById('productGrid');
+
+  function formatPrice(price) {
+    return '$' + price.toFixed(2);
+  }
+
+  // Render products with fade-in stagger effect
+  function renderProducts() {
+    productGrid.innerHTML = '';
+    products.forEach((product, index) => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.style.animationDelay = `${index * 120}ms`;
+      card.classList.add('fade-in');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', `${product.name}, price ${formatPrice(product.price)}`);
+
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy" />
+        <div class="product-info">
+          <div class="product-name">${product.name}</div>
+          <div class="product-price">${formatPrice(product.price)}</div>
+          <button class="btn-buy" onclick="buyProduct(${product.id})" aria-label="Buy ${product.name}">Buy Now</button>
+        </div>
+      `;
+
+      productGrid.appendChild(card);
+    });
+  }
+
+  function buyProduct(id) {
+    const product = products.find(p => p.id === id);
+    if (product) {
+      alert('You clicked buy for "' + product.name + '"');
+    }
+  }
+
+  // Sticky nav effect on scroll (optional)
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 50){
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  renderProducts();
+</script>
+
+</body>
+</html>
+
