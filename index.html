@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Animated Login Page</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .login-container {
+    background: #fff;
+    padding: 40px 50px 50px;
+    border-radius: 15px;
+    box-shadow: 0 0 40px rgba(102, 126, 234, 0.4);
+    width: 360px;
+    position: relative;
+    animation: slideIn 0.8s ease forwards;
+  }
+
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  h2 {
+    margin-bottom: 30px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+  }
+
+  .input-group {
+    position: relative;
+    margin-bottom: 40px;
+  }
+
+  .input-group input {
+    width: 100%;
+    padding: 15px 15px 15px 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    background: transparent;
+  }
+  .input-group input:focus {
+    border-color: #667eea;
+  }
+
+  .input-group label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    color: #aaa;
+    font-size: 16px;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: 0.3s ease all;
+    background: white;
+    padding: 0 5px;
+  }
+
+  .input-group input:focus + label,
+  .input-group input:not(:placeholder-shown) + label {
+    top: -8px;
+    font-size: 12px;
+    color: #667eea;
+  }
+
+  .btn-login {
+    width: 100%;
+    padding: 15px;
+    background: #667eea;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  .btn-login:hover {
+    background: #5a6edc;
+    transform: translateY(-3px);
+  }
+  .btn-login:active {
+    transform: translateY(0);
+  }
+
+  /* Subtle floating circles animation as background decoration */
+  .background-circles {
+    position: absolute;
+    top: -60px;
+    left: -60px;
+    width: 200px;
+    height: 200px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+  .circle1 {
+    width: 120px;
+    height: 120px;
+    top: 20px;
+    left: 30px;
+    animation-name: floatUpDown1;
+    animation-duration: 6s;
+  }
+  .circle2 {
+    width: 80px;
+    height: 80px;
+    top: 60px;
+    left: 100px;
+    animation-name: floatUpDown2;
+    animation-duration: 8s;
+  }
+  .circle3 {
+    width: 100px;
+    height: 100px;
+    top: 50px;
+    left: 160px;
+    animation-name: floatUpDown3;
+    animation-duration: 7s;
+  }
+
+  @keyframes floatUpDown1 {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+  @keyframes floatUpDown2 {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  @keyframes floatUpDown3 {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Error message styling */
+  .error-message {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: -30px;
+    margin-bottom: 15px;
+    display: none;
+  }
+</style>
+</head>
+<body>
+<div class="login-container">
+  <div class="background-circles">
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+  </div>
+  <h2>Login</h2>
+  <form id="loginForm" novalidate>
+    <div class="input-group">
+      <input type="text" id="username" name="username" required placeholder=" " autocomplete="username" />
+      <label for="username">Username or Email</label>
+      <div class="error-message" id="username-error">Please enter your username or email.</div>
+    </div>
+    <div class="input-group">
+      <input type="password" id="password" name="password" required placeholder=" " autocomplete="current-password" />
+      <label for="password">Password</label>
+      <div class="error-message" id="password-error">Please enter your password.</div>
+    </div>
+    <button type="submit" class="btn-login">Log In</button>
+  </form>
+</div>
+
+<script>
+  const loginForm = document.getElementById('loginForm');
+  const usernameInput = document.getElementById('admin');
+  const passwordInput = document.getElementById('123');
+  const usernameError = document.getElementById('username-error');
+  const passwordError = document.getElementById('password-error');
+
+  loginForm.addEventListener('submit', function(event) {
+    event.preventDefault(home.html);
+
+    let valid = true;
+
+    if(!usernameInput.value.trim()) {
+      usernameError.style.display = 'block';
+      valid = false;
+    } else {
+      usernameError.style.display = 'none';
+    }
+
+    if(!passwordInput.value.trim()) {
+      passwordError.style.display = 'block';
+      valid = false;
+    } else {
+      passwordError.style.display = 'none';
+    }
+
+    if (valid) {
+      // Provide some animation or feedback for successful submission
+      this.querySelector('.btn-login').textContent = 'Logging in...';
+      this.querySelector('.btn-login').disabled = true;
+      setTimeout(() => {
+        alert('Login successful! (This is a demo alert.)');
+        this.querySelector('.btn-login').textContent = 'Log In';
+        this.querySelector('.btn-login').disabled = false;
+        this.reset();
+      }, 1500);
+    }
+  });
+</script>
+</body>
+</html>
+
