@@ -200,24 +200,24 @@
 
 <script>
   const loginForm = document.getElementById('loginForm');
-  const usernameInput = document.getElementById('admin');
-  const passwordInput = document.getElementById('123');
+  const usernameInput = document.getElementById('username');
+  const passwordInput = document.getElementById('password');
   const usernameError = document.getElementById('username-error');
   const passwordError = document.getElementById('password-error');
 
   loginForm.addEventListener('submit', function(event) {
-    event.preventDefault(home.html);
+    event.preventDefault();
 
     let valid = true;
 
-    if(!usernameInput.value.trim()) {
+    if(!usernameInput.value.trim(admin)) {
       usernameError.style.display = 'block';
       valid = false;
     } else {
       usernameError.style.display = 'none';
     }
 
-    if(!passwordInput.value.trim()) {
+    if(!passwordInput.value.trim(admin)) {
       passwordError.style.display = 'block';
       valid = false;
     } else {
@@ -226,11 +226,11 @@
 
     if (valid) {
       // Provide some animation or feedback for successful submission
-      this.querySelector('.btn-login').textContent = 'Logging in...';
+      this.querySelector('.btn-login').textContent = 'home.html';
       this.querySelector('.btn-login').disabled = true;
       setTimeout(() => {
         alert('Login successful! (This is a demo alert.)');
-        this.querySelector('.btn-login').textContent = 'Log In';
+        this.querySelector('.btn-login').textContent = 'home.html';
         this.querySelector('.btn-login').disabled = false;
         this.reset();
       }, 1500);
