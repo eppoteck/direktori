@@ -113,6 +113,82 @@
       height: 180px;
     }
   }
+   nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(270deg, #667eea, #764ba2, #667eea);
+    background-size: 600% 600%;
+    animation: gradientShift 16s ease infinite;
+    box-shadow: 0 3px 12px rgba(102, 126, 234, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 50px;
+    transition: padding 0.3s ease;
+  }
+  nav.scrolled {
+    padding: 6px 50px;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.8);
+  }
+
+  @keyframes gradientShift {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
+  }
+
+  nav .logo {
+    font-weight: 700;
+    font-size: 28px;
+    color: white;
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    user-select: none;
+  }
+
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 35px;
+  }
+
+  nav ul li {
+    position: relative;
+  }
+
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px 0;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  nav ul li a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #d1d5ff;
+    transition: width 0.3s ease;
+    border-radius: 2px;
+  }
+  nav ul li a:hover,
+  nav ul li a:focus {
+    color: #d1d5ff;
+  }
+  nav ul li a:hover::after,
+  nav ul li a:focus::after {
+    width: 100%;
+  }
+
 </style>
 </head>
 <body>
