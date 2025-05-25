@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Product Showcase</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+  }
+
+  header {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    box-shadow: 0 5px 10px rgba(102, 126, 234, 0.3);
+  }
+
+  header h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 2.8rem;
+    letter-spacing: 1px;
+  }
+
+  header p {
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin: 0.5rem 0 0;
+    opacity: 0.85;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 2rem auto 4rem;
+    padding: 0 1rem;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 2rem;
+  }
+
+  .product {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    will-change: transform;
+  }
+
+  .product:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 15px 25px rgba(102, 126, 234, 0.4);
+  }
+
+  .product img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .product:hover img {
+    transform: scale(1.1) rotate(2deg);
+  }
+
+  .product-info {
+    padding: 1rem 1.25rem 1.5rem;
+    text-align: center;
+  }
+
+  .product-info h3 {
+    margin: 0.5rem 0 0.25rem;
+    font-size: 1.25rem;
+    color: #3b3b3b;
+  }
+
+  .product-info p {
+    margin: 0;
+    color: #777;
+    font-size: 0.95rem;
+    line-height: 1.3;
+  }
+
+  .product-info .price {
+    margin-top: 0.8rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #667eea;
+  }
+
+  @media (max-width: 480px) {
+    header h1 {
+      font-size: 2rem;
+    }
+    .product img {
+      height: 180px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Our Exclusive Products</h1>
+  <p>ini adalah produk unggulan</p>
+</header>
+<main>
+  <div class="products-grid">
+    <div class="product" tabindex="0" aria-label="Product 1: Elegant Wooden Chair">
+      <img src="https://images.unsplash.com/photo-1567016542133-cf0bbc21443a?auto=format&fit=crop&w=600&q=80" alt="Elegant Wooden Chair"/>
+      <div class="product-info">
+        <h3>Elegant Wooden Chair</h3>
+        <p>Handcrafted from premium oak, perfect for your living room.</p>
+        <div class="price">$149</div>
+      </div>
+    </div>
+    <div class="product" tabindex="0" aria-label="Product 2: Modern LED Desk Lamp">
+      <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=600&q=80" alt="Modern LED Desk Lamp"/>
+      <div class="product-info">
+        <h3>Modern LED Desk Lamp</h3>
+        <p>Brighten up your workspace with sleek adjustable lighting.</p>
+        <div class="price">$79</div>
+      </div>
+    </div>
+    <div class="product" tabindex="0" aria-label="Product 3: Stylish Wristwatch">
+      <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80" alt="Stylish Wristwatch"/>
+      <div class="product-info">
+        <h3>Stylish Wristwatch</h3>
+        <p>Timeless design with precision quartz movement.</p>
+        <div class="price">$220</div>
+      </div>
+    </div>
+    <div class="product" tabindex="0" aria-label="Product 4: Cozy Wool Blanket">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Cozy Wool Blanket"/>
+      <div class="product-info">
+        <h3>Cozy Wool Blanket</h3>
+        <p>Soft and warm, perfect for chilly evenings and winter nights.</p>
+        <div class="price">$120</div>
+      </div>
+    </div>
+    <div class="product" tabindex="0" aria-label="Product 5: Ceramic Coffee Mug">
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="Ceramic Coffee Mug"/>
+      <div class="product-info">
+        <h3>Ceramic Coffee Mug</h3>
+        <p>Durable and stylish, keeps your coffee hot and enjoyable.</p>
+        <div class="price">$25</div>
+      </div>
+    </div>
+    <div class="product" tabindex="0" aria-label="Product 6: Minimalist Backpack">
+      <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80" alt="Minimalist Backpack"/>
+      <div class="product-info">
+        <h3>Minimalist Backpack</h3>
+        <p>Perfect blend of style and function for everyday use.</p>
+        <div class="price">$99</div>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>
+
